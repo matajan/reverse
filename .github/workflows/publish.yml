@@ -7,16 +7,13 @@ on:
       - 'Dockerfile'
       - '.github/workflows/**'
 
-# Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
-# There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
       contents: read
       packages: write
@@ -46,12 +43,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      #- name: Install helm3
-      #  uses: azure/setup-helm@v4.1.0
-      #  with:
-      #   version: '3.14.2' # default is latest (stable)
-      #  id: install
-
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
@@ -66,5 +57,4 @@ jobs:
           exec: helm upgrade app ./chart/reverse-0.1.0.tgz --install --wait --atomic
           kubeconfig: '${{ secrets.KUBECONFIG }}'
           overrule_existing_kubeconfig: "false"
-          #exec: helm upgrade --install REPLACE_NAME charts/REPLACE_CHARTS_LOCATION -f $GITHUB_WORKSPACE/charts/REPLACE_VALUES_LOCATION.yaml --set image.tag=$(echo $GITHUB_SHA | head -c7) --namespace REPLACE_NAMESPACE
-        
+          
