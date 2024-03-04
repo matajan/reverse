@@ -62,3 +62,11 @@ jobs:
       - name: Save DigitalOcean kubeconfig
         run: doctl kubernetes cluster kubeconfig save cluster
 
+      - name: Deploy helm chart 
+        uses: WyriHaximus/github-action-helm3@v3
+        with:
+          exec: helm upgrade app ./chart/reverse-0.1.0.tgz --install --wait --atomic
+          kubeconfig: '${{ secrets.KUBECONFIG }}'
+          overrule_existing_kubeconfig: "true"
+          #exec: helm upgrade --install REPLACE_NAME charts/REPLACE_CHARTS_LOCATION -f $GITHUB_WORKSPACE/charts/REPLACE_VALUES_LOCATION.yaml --set image.tag=$(echo $GITHUB_SHA | head -c7) --namespace REPLACE_NAMESPACE
+        
