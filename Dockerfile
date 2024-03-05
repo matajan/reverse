@@ -6,4 +6,4 @@ COPY reverse.py .
 
 EXPOSE 8000
 
-CMD [ "python3", "reverse.py", ">", "1.txt" ]
+CMD [ "python3", "reverse.py" ]
