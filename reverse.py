@@ -26,6 +26,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 		#self.wfile.write(reversed_ip.encode())
 		self.wfile.write(self.headers)
 
+
 		
 		t = datetime.datetime.now()
 		cur.execute("insert into t_ips (time, r_ip) values (?, ?)", (t, reversed_ip))
