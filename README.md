@@ -29,3 +29,6 @@ The solution can be tested with a simple: **curl http://24.144.76.169:80**
 <br> <br>
 You will get a response with the ip reverted.
 <br> <br>
+Note that in this case it always returns the same ip address, which corresponds to Digital Ocean's vpc.
+<br> <br>
+
