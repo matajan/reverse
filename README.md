@@ -9,7 +9,8 @@ Use alpine as a base image because it is small and light. It exposes port 8000 w
 <br> <br>
 
 ## Helm chart
-The helm chart is also extremely basic, it only uses a LoadBalancer and a Deployment. <br>
+The helm chart is also extremely basic, it only uses a LoadBalancer and a Deployment. 
+<br>
 Note: Due to time constraints, the solution does not use RBAC, Network Policies, Service Account, digital certificates, or any other security measures.
 <br> <br>
 
