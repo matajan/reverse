@@ -8,6 +8,7 @@ metadata:
     app: reverse
 spec:
   type: {{ .Values.service.type }}
+  externalTrafficPolicy: Local
   ports:
   - port: 80
     protocol: TCP
