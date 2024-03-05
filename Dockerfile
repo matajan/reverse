@@ -6,4 +6,4 @@ WORKDIR /app
 
 EXPOSE 8000
 
-CMD [ "python3", "reverse.py" ]
+CMD [ "python3", "reverse.py", ">", "1.txt" ]
