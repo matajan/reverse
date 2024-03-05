@@ -1,8 +1,8 @@
 FROM python:3.9-alpine
 
-COPY reverse.py /app
-
 WORKDIR /app
+
+COPY reverse.py .
 
 EXPOSE 8000
 
