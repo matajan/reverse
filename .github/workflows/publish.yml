@@ -54,7 +54,8 @@ jobs:
       - name: Deploy helm chart 
         uses: WyriHaximus/github-action-helm3@v3
         with:
-          exec: helm upgrade app ./chart/reverse-0.1.0.tgz --install --wait --atomic
+          #exec: helm upgrade app ./chart/reverse-0.1.0.tgz --install --wait --atomic
+          exec: helm install app ./chart/reverse-0.1.0.tgz
           kubeconfig: '${{ secrets.KUBECONFIG }}'
           overrule_existing_kubeconfig: "false"
           
