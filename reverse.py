@@ -39,22 +39,35 @@ if __name__ == '__main__':
 	con.close()
 '''
 
-import http.server as SimpleHTTPServer
-import socketserver as SocketServer
-import logging
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
-PORT = 8000
+class RequestHandler(BaseHTTPRequestHandler):
+    def _write_headers_to_file(self):
+        with open('headers.txt', 'a') as file:
+            file.write(str(self.headers))
 
-class GetHandler(
-        SimpleHTTPServer.SimpleHTTPRequestHandler
-        ):
+    def _set_headers(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
 
     def do_GET(self):
-        logging.error(self.headers)
-        SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+        self._write_headers_to_file()
+        self._set_headers()
+        self.wfile.write(b'Headers were saved!')
+
+    def do_POST(self):
+        self.do_GET()
+
+    def do_PUT(self):
+        self.do_GET()
 
 
-Handler = GetHandler
-httpd = SocketServer.TCPServer(("", PORT), Handler)
+def run(server_class=HTTPServer, handler_class=RequestHandler, port=8080):
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    print(f'Server running on port {port}...')
+    httpd.serve_forever()
 
-httpd.serve_forever()
+if __name__ == "__main__":
+    run()
