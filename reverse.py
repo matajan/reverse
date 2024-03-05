@@ -63,7 +63,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.do_GET()
 
 
-def run(server_class=HTTPServer, handler_class=RequestHandler, port=8080):
+def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print(f'Server running on port {port}...')
