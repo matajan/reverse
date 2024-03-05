@@ -5,7 +5,7 @@ on:
     paths:
       - 'reverse.py'
       - 'Dockerfile'
-      - '.github/workflows/**'
+      - '.github/workflows/publish.yml'
 
 env:
   REGISTRY: ghcr.io
