@@ -1,4 +1,4 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+'''from http.server import BaseHTTPRequestHandler, HTTPServer
 import sqlite3
 import datetime
 
@@ -37,4 +37,24 @@ if __name__ == '__main__':
 	httpd = HTTPServer(server_address, RequestHandler)
 	httpd.serve_forever()
 	con.close()
-#
+'''
+
+import http.server as SimpleHTTPServer
+import socketserver as SocketServer
+import logging
+
+PORT = 8000
+
+class GetHandler(
+        SimpleHTTPServer.SimpleHTTPRequestHandler
+        ):
+
+    def do_GET(self):
+        logging.error(self.headers)
+        SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+
+
+Handler = GetHandler
+httpd = SocketServer.TCPServer(("", PORT), Handler)
+
+httpd.serve_forever()
