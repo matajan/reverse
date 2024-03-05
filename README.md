@@ -21,5 +21,5 @@ The workflow is also very simple, perform the docker build, push the generated c
 <br> <br>
 
 ## Public IP
-The port used is port **80** and this is the public IP address of the proposed solution: **1**
+The port used is port **80** and this is the public IP address of the proposed solution: **24.144.76.169**
 <br> <br>
