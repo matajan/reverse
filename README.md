@@ -23,3 +23,9 @@ The workflow is also very simple, perform the docker build, push the generated c
 ## Public IP
 The port used is port **80** and this is the public IP address of the proposed solution: **24.144.76.169**
 <br> <br>
+
+## How to test it?
+The solution can be tested with a simple: **curl http://24.144.76.169:80**
+<br> <br>
+You will get a response with the ip reverted.
+<br> <br>
