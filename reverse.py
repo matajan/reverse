@@ -13,8 +13,8 @@ except sqlite3.OperationalError:
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-	def log_message(self, format, *args):
-		pass
+	#def log_message(self, format, *args):
+	#	pass
 
 	def do_GET(self):
 		ip = self.client_address[0]
@@ -23,8 +23,8 @@ class RequestHandler(BaseHTTPRequestHandler):
 		self.send_header('Content-type', 'text/plain')
 		self.end_headers()
 		print(reversed_ip)
-		#self.wfile.write(reversed_ip.encode())
-		self.wfile.write(self.headers)
+		self.wfile.write(reversed_ip.encode())
+		#self.wfile.write(self.headers)
 
 
 		
