@@ -6,6 +6,7 @@ on:
       - 'reverse.py'
       - 'Dockerfile'
       - '.github/workflows/publish.yml'
+      - 'chart/templates/service.yaml'
 
 env:
   REGISTRY: ghcr.io
