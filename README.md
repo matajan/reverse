@@ -21,14 +21,11 @@ The workflow is also very simple, perform the docker build, push the generated c
 <br> <br>
 
 ## Public IP
-The port used is port **80** and this is the public IP address of the proposed solution: **24.144.76.169**
+The port used is port **80** and this is the public IP address of the proposed solution: **24.144.76.92**
 <br> <br>
 
 ## How to test it?
-The solution can be tested with a simple: **curl http://24.144.76.169:80**
+The solution can be tested with a simple: **curl http://24.144.76.92:80**
 <br> <br>
 You will get a response with the ip reverted.
 <br> <br>
-Note that in this case it always returns the same ip address, which corresponds to Digital Ocean's vpc.
-<br> <br>
-
