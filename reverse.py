@@ -44,7 +44,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 class RequestHandler(BaseHTTPRequestHandler):
     def _write_headers_to_file(self):
         with open('headers.txt', 'a') as file:
-            file.write(str(self.headers))
+            #file.write(str(self.headers))
+            file.write(str(self.headers.get('x-forwarded-for'))
 
     def _set_headers(self):
         self.send_response(200)
@@ -53,10 +54,8 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._write_headers_to_file()
-        self._set_headers()
-        ip = self.headers.get('x-forwarded-for')[0]
-        self.wfile.write(str(ip)) 
-	#self.wfile.write(b'Headers were saved!')
+        self._set_headers() 
+	self.wfile.write(b'Headers were saved!')
 	
     def do_POST(self):
         self.do_GET()
