@@ -45,7 +45,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def _write_headers_to_file(self):
         with open('headers.txt', 'a') as file:
             #file.write(str(self.headers))
-            file.write(str(self.headers.get('x-forwarded-for'))
+            file.write(str(self.headers.get('x-forwarded-for')))
 
     def _set_headers(self):
         self.send_response(200)
