@@ -55,7 +55,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self._write_headers_to_file()
         self._set_headers() 
-	self.wfile.write(b'Headers were saved!')
+        self.wfile.write(b'Headers were saved!')
 	
     def do_POST(self):
         self.do_GET()
