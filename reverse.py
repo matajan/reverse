@@ -54,7 +54,9 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self._write_headers_to_file()
         self._set_headers()
-        self.wfile.write(b'Headers were saved!')
+	#self.headers.get('x-forwarded-for')
+        #self.wfile.write(b'Headers were saved!')
+	self.wfile.write(self.headers.get('x-forwarded-for'))
 
     def do_POST(self):
         self.do_GET()
