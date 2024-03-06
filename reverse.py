@@ -1,7 +1,6 @@
-'''from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import sqlite3
 import datetime
-
 
 
 con = sqlite3.connect("ips.db")
@@ -13,32 +12,39 @@ except sqlite3.OperationalError:
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-	#def log_message(self, format, *args):
-	#	pass
-
-	def do_GET(self):
-		ip = self.client_address[0]
-		reversed_ip = '.'.join(reversed(ip.split('.')))
+	
+	def _set_headers(self):
 		self.send_response(200)
 		self.send_header('Content-type', 'text/plain')
 		self.end_headers()
+
+	def do_GET(self):
+		ip = str(self.headers.get('x-forwarded-for'))
+		reversed_ip = '.'.join(reversed(ip.split('.')))
+		self._set_headers()
 		print(reversed_ip)
 		self.wfile.write(reversed_ip.encode())
-		#self.wfile.write(self.headers)
-
-
+		
 		t = datetime.datetime.now()
 		cur.execute("insert into t_ips (time, r_ip) values (?, ?)", (t, reversed_ip))
 		con.commit()
 		return
+
+	def do_POST(self):
+		self.do_GET()
+
+	def do_PUT(self):
+		self.do_GET()
+
+
 
 if __name__ == '__main__':
 	server_address = ('', 8000)
 	httpd = HTTPServer(server_address, RequestHandler)
 	httpd.serve_forever()
 	con.close()
-'''
 
+'''
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -72,3 +78,4 @@ def run(server_class=HTTPServer, handler_class=RequestHandler, port=8000):
 
 if __name__ == "__main__":
     run()
+'''
